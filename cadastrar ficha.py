@@ -1,5 +1,5 @@
 class FichaPersonagem:
-    def __init__(self, nome, origem, idade, classe, arma, descricao, lore):
+    def __init__(self, nome, origem, idade, classe, arma, descricao, lore,atributos ):
         self.nome = nome
         self.origem = origem
         self.idade = idade
@@ -7,6 +7,7 @@ class FichaPersonagem:
         self.arma = arma
         self.descricao = descricao
         self.lore = lore
+        self.atributos=atributos
 
 class Atributos:
     def __init__(self,força, destreza, inteligencia, percepçao, Educaçao, retorica, vigor, constituiçao, sobrevivencia, carisma, vontade):
@@ -84,53 +85,23 @@ def cadastro(dicionario_fichas):
           sobrevivencia=int(input("sobrevivencia:"))
           carisma=int(input("Carisma:"))       
           vontade=int(input("Força de Vontade:"))
-          pontos_habilidade=vigor
-
-
+          
+          
+          
+          atributos=Atributos(força=força, destreza=destreza, inteligencia=inteligencia, percepçao=percepçao, Educaçao=Educaçao, retorica=retorica, vigor=vigor, constituiçao=constituiçao, sobrevivencia=sobrevivencia, carisma=carisma, vontade=vontade)
 
           ficha=FichaPersonagem(nome=nome, origem=origem, idade=idade, classe=classe, arma=arma, descricao=descricao, lore=lore)
 
 
-          atributos=Atributos(força=força, destreza=destreza, inteligencia=inteligencia, percepçao=percepçao, Educaçao=Educaçao, retorica=retorica, vigor=vigor, constituiçao=constituiçao, sobrevivencia=sobrevivencia, carisma=carisma, vontade=vontade)
 
-
-
-
-          #calculos
-          vida_total=calculo_vida(vigor,constituiçao,sobrevivencia)
-          sanidade=calculo_sanidade(vontade)
-          dados_fichas={
-               "origem: ":origem,
-               "idade: ":idade,
-               "classe:":classe,
-               "arma :":arma,
-               "descrição :":descricao,
-               "lore :":lore,
-                "atributos":{
-                           "força":força,
-                           "destreza":destreza,
-                           "inteligencia":inteligencia,
-                           "percepçao":percepçao,
-                           "Educaçao":Educaçao,
-                           "retorica":retorica,
-                           "vigor":vigor,
-                           "constituiçao":constituiçao,    
-                           "sobrevivencia":sobrevivencia,
-                           "carisma":carisma,
-                           "vontade":vontade,
-                            },
-                 "valores_derivados":{  
-                     "Pontos de Habilidade":pontos_habilidade,
-                      "vida_total": vida_total,
-                      "sanidade": sanidade,}
           
+          dados_fichas={
+               "ficha":ficha,
+               "atributos":atributos,
           
           } 
-          resultado_int=ler_inteligencia(inteligencia)                    
-          if resultado_int:
-             print("Inteligencia acima de 10")
-             dados_fichas["inteligencia alta"]="Sua inteligencia é acima da media"
-          
+
+        
           
           dicionario_fichas[nome]=dados_fichas
          
