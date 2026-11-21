@@ -68,6 +68,9 @@ def cadastro(dicionario_fichas):
           print("Lore")
           lore=input()
           
+          
+          
+          
           print("=== ATRIBUTOS===")
           
           força=int(input("força:"))
@@ -84,6 +87,15 @@ def cadastro(dicionario_fichas):
           pontos_habilidade=vigor
 
 
+
+          ficha=FichaPersonagem(nome=nome, origem=origem, idade=idade, classe=classe, arma=arma, descricao=descricao, lore=lore)
+
+
+          atributos=Atributos(força=força, destreza=destreza, inteligencia=inteligencia, percepçao=percepçao, Educaçao=Educaçao, retorica=retorica, vigor=vigor, constituiçao=constituiçao, sobrevivencia=sobrevivencia, carisma=carisma, vontade=vontade)
+
+
+
+
           #calculos
           vida_total=calculo_vida(vigor,constituiçao,sobrevivencia)
           sanidade=calculo_sanidade(vontade)
@@ -92,7 +104,7 @@ def cadastro(dicionario_fichas):
                "idade: ":idade,
                "classe:":classe,
                "arma :":arma,
-               "descrição :":descrição,
+               "descrição :":descricao,
                "lore :":lore,
                 "atributos":{
                            "força":força,
