@@ -1,4 +1,5 @@
 saida=False
+import cadastrar_ficha
 
 dicionario_fichas={}
 
@@ -16,44 +17,9 @@ def menu():
              print("digite um numero para selecionar uma das opçoes")
     return opcao
 
-def calculo_vida(vigor,constituiçao,sobrevivencia):
-     vida_total =(vigor + constituiçao + sobrevivencia)* 5
-     return vida_total
-
-
-def ler_inteligencia(inteligencia):
-    if inteligencia>=10:
-       return True
-    else:
-        return False  
 
 
 
-def calculo_sanidade(vontade):   
-    # calculos
-     vontade=vontade*5
-     return vontade
-      
-
-    #Relatorio da ficha
-
-     print(f"Dado base de Ataque/ Força:1d20+{força}")
-     print(f"Dado base de Ataque/ Destreza:1d20+{destreza}")
-     print(f"esquivar/velocidade atual: {destreza}")
-            
-     if percepçao>=10:
-              print("percepçao alta, você é capaz de perceber coisas com maior facilidade")
-              print(f"**percepçao**={percepçao}")
-     else:
-        print(f"inteligencia={inteligencia}")  
-
-
-
-def buscar_ficha(buscar,dicionario_fichas):
-    if buscar in dicionario_fichas:
-       return True
-    else:
-        return False
     
 
 def alterar_ficha(dicionario_fichas):
@@ -147,7 +113,7 @@ while True:
      opcao=menu()
      
      if opcao==1:
-        cadastro(dicionario_fichas)
+        cadastrar_ficha.cadastro(dicionario_fichas)
 
      elif opcao==2:
           consulta_ficha(dicionario_fichas)

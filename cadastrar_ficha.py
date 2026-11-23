@@ -85,59 +85,25 @@ def cadastro(dicionario_fichas):
           sobrevivencia=int(input("sobrevivencia:"))
           carisma=int(input("Carisma:"))       
           vontade=int(input("Força de Vontade:"))
-          
-          
-          
+             
           atributos=Atributos(força=força, destreza=destreza, inteligencia=inteligencia, percepçao=percepçao, Educaçao=Educaçao, retorica=retorica, vigor=vigor, constituiçao=constituiçao, sobrevivencia=sobrevivencia, carisma=carisma, vontade=vontade)
 
           ficha=FichaPersonagem(nome=nome, origem=origem, idade=idade, classe=classe, arma=arma, descricao=descricao, lore=lore)
 
 
-
           
-          dados_fichas={
-               "ficha":ficha,
-               "atributos":atributos,
-          
-          } 
-
-        
-          
-          dicionario_fichas[nome]=dados_fichas
-         
-          
-          
-                    
-
-
-
-
           print("FICHA REGISTRADA COM SUCESSO")
-          print(f"Informaçoes sobre: {nome}" )
-          for chave, informaçoes in dicionario_fichas[nome].items():
-              if chave=="atributos":
-                 print("(=== ATRIBUTOS===)")
-                 for atributos, valores in dicionario_fichas[nome]["atributos"].items():  
-                     print(atributos,valores)
-              elif chave=="valores_derivados":
-                   print("=== STATUS ===")
-                   for chave, valor in dicionario_fichas[nome]["valores_derivados"].items():
-                      print(chave,valor)
-
-
-              else:
-                  print(chave, informaçoes)   
-                 
-                    
-                     
+          
+          exibir_ficha(ficha)
+          
+          dicionario_fichas[nome]=ficha
+         
                 
-          
-          
+
+
 
           
-          
-          
-                    
+                     
           
           while True:
                print("Deseja cadastrar outra ficha ? ")
@@ -156,3 +122,24 @@ def cadastro(dicionario_fichas):
             print("voltando ao menu")
             return
 
+
+def exibir_ficha(ficha):
+    print(ficha.nome)
+    print(ficha.origem)
+    print(ficha.idade)
+    print(ficha.classe)
+    print(ficha.arma)
+    print(ficha.descricao)
+    print(ficha.lore)
+    print("Atributos")
+    print(ficha.atributos.força)
+    print(ficha.atributos.destreza)
+    print(ficha.atributos.inteligencia)
+    print(ficha.atributos.percepçao)
+    print(ficha.atributos.Educaçao)
+    print(ficha.atributos.retorica)
+    print(ficha.atributos.vigor)
+    print(ficha.atributos.constituiçao)
+    print(ficha.atributos.sobrevivencia)
+    print(ficha.atributos.carisma)
+    print(ficha.atributos.vontade)
