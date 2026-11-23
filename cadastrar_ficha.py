@@ -38,6 +38,15 @@ class Atributos:
 
 
 
+
+campos_editaveis = {
+    "origem", "idade", "classe", "arma", "descricao", "lore",
+    "força", "destreza", "inteligencia", "percepçao",
+    "Educaçao", "retorica", "vigor", "constituiçao",
+    "sobrevivencia", "carisma", "vontade"
+}
+
+
 def cadastro(dicionario_fichas):
     
     while True:
@@ -88,7 +97,7 @@ def cadastro(dicionario_fichas):
              
           atributos=Atributos(força=força, destreza=destreza, inteligencia=inteligencia, percepçao=percepçao, Educaçao=Educaçao, retorica=retorica, vigor=vigor, constituiçao=constituiçao, sobrevivencia=sobrevivencia, carisma=carisma, vontade=vontade)
 
-          ficha=FichaPersonagem(nome=nome, origem=origem, idade=idade, classe=classe, arma=arma, descricao=descricao, lore=lore)
+          ficha=FichaPersonagem(nome=nome, origem=origem, idade=idade, classe=classe, arma=arma, descricao=descricao, lore=lore,atributos=atributos)
 
 
           
@@ -97,12 +106,6 @@ def cadastro(dicionario_fichas):
           exibir_ficha(ficha)
           
           dicionario_fichas[nome]=ficha
-         
-                
-
-
-
-          
                      
           
           while True:
@@ -131,7 +134,9 @@ def exibir_ficha(ficha):
     print(ficha.arma)
     print(ficha.descricao)
     print(ficha.lore)
+    
     print("Atributos")
+    
     print(ficha.atributos.força)
     print(ficha.atributos.destreza)
     print(ficha.atributos.inteligencia)
@@ -143,3 +148,113 @@ def exibir_ficha(ficha):
     print(ficha.atributos.sobrevivencia)
     print(ficha.atributos.carisma)
     print(ficha.atributos.vontade)
+    print(ficha.atributos.pontos_habilidade)
+    print(ficha.atributos.vida_total)
+    print(ficha.atributos.sanidade)
+
+
+
+
+def consulta_ficha(dicionario_fichas):
+    if dicionario_fichas=={}:
+       print("nenhum cadastro registrado")
+       return   
+    while True:
+          print("qual ficha deseja consultar ? ")
+          nome=input()
+          if nome in dicionario_fichas:
+             ficha=dicionario_fichas[nome]
+             exibir_ficha(ficha)
+          
+          else:
+            print("Esse nome não esta registrado")
+          
+          while True:
+               print("deseja continuar ? sim/nao")
+               continuar=input()
+               
+               if continuar=="sim":
+                  sair= False 
+                  break
+               elif continuar=="nao":
+                    sair= True
+                    break
+               else:
+                   print("resposta invalida")
+          
+          if sair:
+             print("voltando ao menu")
+             return
+
+
+
+def alterar_ficha(dicionario_fichas,campos_editaveis):
+    if dicionario_fichas=={}:
+       print("nenhum cadastro registrado")
+       return
+    while True:
+               print("qual ficha você deseja alterar ?")
+               nome=input()
+               if nome in dicionario_fichas:
+                  ficha=dicionario_fichas[nome]
+                  exibir_ficha(ficha)
+                  break
+               else:
+                  print("ficha nao cadastrada")
+                  print("tente novamente")
+    while True:   
+               while True:
+                   print("qual dado vc deseja atualizar  ? ")
+                   alterar=input()
+               
+                   if alterar not in campos_editaveis:
+                      print("Larga de ser burro, digite algo especifico da ficha")
+                      continue
+                   
+                   else:
+                       break
+               
+               if hasattr(ficha,alterar):
+                  print(f"digite a atualização da {alterar}")
+                  novo_registro=input()
+                  setattr(ficha,alterar,novo_registro)
+                  print("Alteração feita com sucesso")
+                  print("deseja alterar outro dado ? sim/nao")
+                  resposta=input()
+                  if resposta=="sim":
+                      continue
+                  elif resposta=="nao":
+                      print("voltando ao menu")
+                      return
+                  else:
+                      print("opçao invalida")
+                      return
+               
+               elif hasattr(ficha.atributos,alterar):
+                    while True:
+                       print(f"digite a atualização da {alterar}")
+                       try:
+                         novo_registro=int(input())
+                         break
+                       except ValueError:
+                         print("Digite um número válido!")
+                    
+                    setattr(ficha.atributos,alterar, novo_registro)
+                    print("Alteração feita com sucesso")
+                    print("deseja alterar outro dado ? sim/nao")
+                    resposta=input()
+                    if resposta=="sim":
+                        continue
+                    elif resposta=="nao":
+                        print("voltando ao menu")
+                        return
+                    else:
+                        print("opçao invalida")
+                        return               
+               
+               else:
+                   print("dado inexistente")
+            
+            
+            
+
