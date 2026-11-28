@@ -3,6 +3,16 @@ import cadastrar_ficha
 
 dicionario_fichas={}
 
+
+
+campos_editaveis = {
+    "origem", "idade", "classe", "arma", "descricao", "lore",
+    "força", "destreza", "inteligencia", "percepçao",
+    "Educaçao", "retorica", "vigor", "constituiçao",
+    "sobrevivencia", "carisma", "vontade"
+}
+
+
 def menu():
     print("1 - Cadastrar ficha")
     print("2 - mostrar ficha")
@@ -19,11 +29,6 @@ def menu():
 
 
 
-
-    
-
-
-
 #menu
 
 while True:
@@ -35,7 +40,7 @@ while True:
      elif opcao==2:
         cadastrar_ficha.consulta_ficha(dicionario_fichas)
      elif opcao==3:
-         alterar_ficha(dicionario_fichas)
+         cadastrar_ficha.alterar_ficha(dicionario_fichas,campos_editaveis)
          
      elif opcao==4:
          

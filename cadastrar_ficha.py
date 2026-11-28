@@ -39,12 +39,6 @@ class Atributos:
 
 
 
-campos_editaveis = {
-    "origem", "idade", "classe", "arma", "descricao", "lore",
-    "força", "destreza", "inteligencia", "percepçao",
-    "Educaçao", "retorica", "vigor", "constituiçao",
-    "sobrevivencia", "carisma", "vontade"
-}
 
 
 def cadastro(dicionario_fichas):
@@ -218,6 +212,7 @@ def alterar_ficha(dicionario_fichas,campos_editaveis):
                   print(f"digite a atualização da {alterar}")
                   novo_registro=input()
                   setattr(ficha,alterar,novo_registro)
+                  
                   print("Alteração feita com sucesso")
                   print("deseja alterar outro dado ? sim/nao")
                   resposta=input()
@@ -238,8 +233,12 @@ def alterar_ficha(dicionario_fichas,campos_editaveis):
                          break
                        except ValueError:
                          print("Digite um número válido!")
-                    
+                    if alterar=="vigor":
+                        ficha.atributos.pontos_habilidade=novo_registro
                     setattr(ficha.atributos,alterar, novo_registro)
+                    ficha.atributos.vida_total=ficha.atributos.calcular_vida()
+                    ficha.atributos.sanidade=ficha.atributos.calcular_sanidade()
+                    
                     print("Alteração feita com sucesso")
                     print("deseja alterar outro dado ? sim/nao")
                     resposta=input()
@@ -257,4 +256,3 @@ def alterar_ficha(dicionario_fichas,campos_editaveis):
             
             
             
-
