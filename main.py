@@ -1,7 +1,8 @@
 saida=False
 import cadastrar_ficha
+import persistencia
+dicionario_fichas=persistencia.carregar_fichas()
 
-dicionario_fichas={}
 
 
 
@@ -36,6 +37,7 @@ while True:
      
      if opcao==1:
         cadastrar_ficha.cadastro(dicionario_fichas)
+        persistencia.salvar_fichas(dicionario_fichas)
 
      elif opcao==2:
         cadastrar_ficha.consulta_ficha(dicionario_fichas)
